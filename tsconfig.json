@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": [
+      "es6",
+      "es2020",
+      "ES2017",
+      "ES2017.Object",
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +27,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
+  "exclude": [
     "src"
   ]
+//   "include": [
+//     "src"
+//   ],
 }
