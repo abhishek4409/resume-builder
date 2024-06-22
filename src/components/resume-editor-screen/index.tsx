@@ -29,22 +29,37 @@ const ResumeEditorScreen = () => {
                     container
                     sx={{
                         margin: '1rem',
+                        justifyContent: 'center',
                     }}
                 >
-                    <Grid item desktop={6}>
+                    <Grid
+                        item
+                        xs={8}
+                        sx={(theme) => ({
+                            [theme.breakpoints.down(1380)]: {
+                                flexBasis: '100%',
+                                maxWidth: '100%',
+                            },
+                        })}
+                    >
                         <Box>
                             <ResumeEditForm />
                         </Box>
                     </Grid>
                     <Grid
                         item
-                        desktop={6}
-                        sx={{
+                        xs={4}
+                        sx={(theme) => ({
                             display: 'flex',
                             justifyContent: 'center',
                             flexDirection: 'column',
                             alignItems: 'center',
-                        }}
+                            width: 0,
+                            [theme.breakpoints.down(2100)]: {
+                                flexBasis: '55%',
+                                maxWidth: '55%',
+                            },
+                        })}
                     >
                         <TextField
                             size="small"
@@ -52,18 +67,30 @@ const ResumeEditorScreen = () => {
                             value={selectResumeTitle}
                             inputProps={{ style: { textAlign: 'center' } }}
                             onChange={handleResumeTitle}
+                            placeholder="Resume Title"
                         />
                         <Box sx={{ mb: '1rem' }} />
                         <Paper
                             elevation={10}
                             id="resume-paper"
-                            sx={{
+                            sx={(theme) => ({
                                 width: '210mm',
                                 minHeight: '297mm',
                                 '-webkit-box-sizing': 'border-box',
                                 '-moz-box-sizing': 'border-box',
                                 'box-sizing': 'border-box',
-                            }}
+                                [theme.breakpoints.down('md')]: {
+                                    transform: 'scale(0.9) translate(-2%, 0%)',
+                                },
+                                [theme.breakpoints.down('750')]: {
+                                    transform:
+                                        'scale(0.7) translate(-3%, -16%)',
+                                },
+                                [theme.breakpoints.down('sm')]: {
+                                    transform:
+                                        'scale(0.6) translate(-3%, -28%)',
+                                },
+                            })}
                         >
                             <Template />
                         </Paper>

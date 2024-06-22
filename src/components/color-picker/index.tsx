@@ -70,6 +70,7 @@ const ColorPicker = () => {
                     width: 'fit-content',
                     textTransform: 'capitalize',
                     fontSize: '1rem',
+                    minWidth: 'fit-content',
                 }}
                 onClick={handleColorPickerPopup}
             >

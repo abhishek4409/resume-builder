@@ -7,14 +7,39 @@ import SaveResume from '../save-resume';
 
 export const NavigationButtons = ({ handlePreviousStep, handleNextStep }) => {
     return (
-        <Grid container justifyContent="center" sx={{ marginTop: '6rem' }}>
-            <Box sx={{ width: '80%', display: 'flex' }}>
+        <Grid
+            container
+            justifyContent="center"
+            sx={(theme) => ({
+                marginTop: '6rem',
+                [theme.breakpoints.down('lg')]: {
+                    // display: 'none',
+                },
+            })}
+        >
+            <Box
+                sx={(theme) => ({
+                    width: '80%',
+                    display: 'flex',
+                    [theme.breakpoints.down(1720)]: {
+                        width: '100%',
+                    },
+                })}
+            >
                 <Grid item xs={9}>
                     <Box
-                        sx={{
+                        sx={(theme) => ({
                             display: 'flex',
                             justifyContent: 'flex-start',
-                        }}
+                            overflowX: 'auto',
+                            overflowY: 'hidden',
+                            [theme.breakpoints.down('md')]: {
+                                width: '24rem',
+                            },
+                            [theme.breakpoints.down('sm')]: {
+                                width: '14rem',
+                            },
+                        })}
                     >
                         <ColorPicker />
                         <Box sx={{ ml: '1rem' }} />
@@ -27,10 +52,14 @@ export const NavigationButtons = ({ handlePreviousStep, handleNextStep }) => {
                 </Grid>
                 <Grid item xs={3}>
                     <Box
-                        sx={{
+                        sx={(theme) => ({
                             display: 'flex',
                             justifyContent: 'flex-end',
-                        }}
+                            [theme.breakpoints.down('sm')]: {
+                                maxWidth: '100%',
+                                flexBasis: '100%',
+                            },
+                        })}
                     >
                         <Button
                             variant="outlined"

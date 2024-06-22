@@ -53,6 +53,7 @@ const SaveResume = () => {
                     width: 'fit-content',
                     textTransform: 'capitalize',
                     fontSize: '1rem',
+                    minWidth: '6rem',
                 }}
                 onClick={handleSaveAsPopup}
             >

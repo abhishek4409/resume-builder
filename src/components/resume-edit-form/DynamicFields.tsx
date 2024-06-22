@@ -36,7 +36,7 @@ export const DynamicFields = ({
                 >
                     <Box
                         // key={fieldIds + field?.name}
-                        sx={{
+                        sx={(theme) => ({
                             display: 'flex',
                             height: 'calc(100% - 1.5rem)',
                             justifyContent: [
@@ -47,6 +47,9 @@ export const DynamicFields = ({
                                 ? 'center'
                                 : 'start',
                             margin: '0.75rem 1.5rem',
+                            [theme.breakpoints.down('md')]: {
+                                margin: '0.6rem 0.6rem',
+                            },
                             alignItems: ['text', 'textarea', 'date'].includes(
                                 field?.type
                             )
@@ -60,7 +63,7 @@ export const DynamicFields = ({
                             ].includes(field?.type)
                                 ? 'column'
                                 : 'row',
-                        }}
+                        })}
                     >
                         <InputLabel
                             // key={fieldIds + field?.name}

@@ -13,6 +13,8 @@ export const defaultTheme = createTheme({
             md: 900,
             lg: 1200,
             xl: 1536,
+            750: 750,
+            850: 850,
         },
     },
 });

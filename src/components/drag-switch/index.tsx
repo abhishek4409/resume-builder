@@ -26,6 +26,7 @@ const DragSwicth = () => {
                 borderColor: 'primary.light',
                 alignItems: 'center',
                 justifyContent: 'center',
+                minWidth: '10rem',
             }}
         >
             <Typography color="primary.main">Draggable</Typography>
