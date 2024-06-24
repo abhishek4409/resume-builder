@@ -22,18 +22,6 @@ npm (>=6.x.x) or yarn (>=1.x.x)
 This runs the app in the development mode.\
 Just Excute from the source folder and the application wil be up and running.
 
-## Creating a production build
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ## Contact
 
 If you have any questions or feedback, feel free to reach out at abhi.ggps360@gmail.com
