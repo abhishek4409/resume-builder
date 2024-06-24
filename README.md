@@ -7,7 +7,7 @@ It also saves your incomplete resumes in local storages, allowing you to resume 
 The project is built on react. Below are the Steps to run the application.
 
 ## Demo
-You can check out the live application [here](https://zerolightyears.netlify.app/){:target="_blank"}
+You can check out the live application [here](https://zerolightyears.netlify.app/)
 
 ## Prerequisites
 Make sure you have the following installed in your system:
