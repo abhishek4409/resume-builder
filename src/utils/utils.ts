@@ -1,6 +1,5 @@
 import html2canvas from 'html2canvas';
 import moment from 'moment';
-import * as FileSaver from 'file-saver';
 import jsPDF from 'jspdf';
 
 export const convertToSentenceCase = (str: string) => {
@@ -25,4 +24,21 @@ export const downloadToPDF = (id, element, resumeTitle) => {
         jspdf.addImage(canvas, 'png', 0, 0, canvas.width, canvas.height);
         jspdf.save(fileName);
     });
+};
+
+export const isAllRequiredFieldsAreFilled = (selectTemplate, currentStep) => {
+    const isAllRequiredFlled = selectTemplate?.sections?.[
+        currentStep
+    ]?.fields.every((field) => {
+        if (
+            field?.required &&
+            (field?.value === null ||
+                field?.value === undefined ||
+                field?.value === '')
+        )
+            return false;
+        else return true;
+    });
+
+    return isAllRequiredFlled;
 };

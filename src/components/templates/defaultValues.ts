@@ -1,28 +1,27 @@
 export const defaultValues = {
     firstName: 'Jhon',
     lastName: 'Doe',
-    jobTitle: 'Frontend Developer',
+    graduationStream: 'Electrical Engineer',
     address1: 'Front Lake',
-    address2: 'California',
+    address2: 'Telangana',
     phone: 440 - 2601789,
     emailAddress: 'jhon.doe@gnail.com',
-    summary: `Human resources generalist with 8 years of experience in HR, including hiring and terminating, disciplining employees and helping department managers improve employee performance. Worked with labor unions to negotiate compensation packages for workers. Organized new hire training initiatives as well as ongoing training to adhere to workplace safety standards. Worked with OSHA to ensure that all safety regulations are followed.`,
-    positionTitle: 'Software Engineer II',
-    companyName: 'Microsoft',
+    summary: `Enthusiastic and dedicated high school graduate seeking to leverage customer service and retail knowledge in a Sales Associate role at ShopSmart Emporium. Aiming to boost customer satisfaction scores, utilizing communication and problem-solving skills. Winner of the 'Best Volunteer Award' for consistently providing excellent customer service at the school cafeteria.`,
+    internshipName: 'Intern Electrical Engineer',
+    companyName: 'NTPC',
     location: 'California',
     startDate: '01-01-2000',
     endDate: '01-01-2020',
     currentlyWorking: false,
-    workSummary: `Implement effective company policies to ensure that all practices comply with labor and employment regulations
-Increased employee retention rates by managing workplace satisfaction to an over 90% success rate by creating and maintaining a positive work environment
-Develop targeted outreach practices to increase minority recruitment.`,
-    schoolName: 'KIIT University',
+    internshipWorkDetails: `Implement effective company policies to ensure that all practices comply with labor and employment regulations
+IConducted market research to identify trends and provide insights.
+Assisted in digital content creation, leading to 20% increase in traffic.`,
+    schoolName: 'IIT',
     degree: 'B.Tech',
-    fieldOfStudy: 'Computer Science',
+    fieldOfStudy: 'Electrical Engineer',
     description: 'Academic Awardee of AY 2007-2008',
-    skill: `Javascript
-React
-Typescript
-Docker
-Webpack`,
+    skill: `Circuit Design
+Prototyping
+Energy Efficiency
+System Design`,
 };

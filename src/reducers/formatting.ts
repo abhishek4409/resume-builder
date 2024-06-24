@@ -5,6 +5,7 @@ const initState = {
         { main: '#000000', light: '#000000' },
         { main: '#000000', light: '#999999' },
         { main: '#22A669', light: '#98eac4' },
+        { main: '#006666', light: '#009e9e' },
         { main: '#FFCC00', light: '#ffeb99' },
         { main: '#17A9E4', light: '#a1ddf6' },
         { main: '#8C0000', light: '#ff6b6b' },
@@ -21,7 +22,7 @@ const initState = {
     currentFontFamily: 'sans-serif',
     allowDrag: false,
     currentStep: 0,
-    resumeTitle: 'Untitled',
+    resumeTitle: '',
     uid: null,
 };
 

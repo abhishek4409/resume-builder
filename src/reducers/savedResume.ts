@@ -5,7 +5,7 @@ const savedResumeMap = {};
 export const savedResumeReducer = (state = savedResumeMap, action: any) => {
     switch (action.type) {
         case 'CLEAR_ALL_SAVED_DATA': {
-            return new Map();
+            return {};
         }
         case 'SAVE_RESUME_AND_PREFERENCES': {
             const newState = produce(state, (draft: any) => {

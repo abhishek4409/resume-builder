@@ -1,5 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Grid, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
 export const SavedResumeListItems = ({
@@ -19,8 +21,8 @@ export const SavedResumeListItems = ({
                 margin: '1rem',
                 borderRadius: '1rem',
                 padding: '1rem',
+                minWidth: '15rem',
             }}
-            onClick={() => onItemClick(uid)}
         >
             <Grid item xs={6}>
                 <Typography variant="h6" fontFamily="Montserrat">
@@ -30,7 +32,13 @@ export const SavedResumeListItems = ({
             <Grid item xs={6} textAlign="end">
                 <DeleteIcon
                     sx={{ cursor: 'pointer' }}
-                    onClick={(e) => onDeletePress(e, uid)}
+                    onClick={(e) => onDeletePress(uid)}
+                    style={{ margin: '0.5rem' }}
+                />
+                <EditIcon
+                    sx={{ cursor: 'pointer' }}
+                    onClick={() => onItemClick(uid)}
+                    style={{ margin: '0.5rem' }}
                 />
             </Grid>
         </Grid>

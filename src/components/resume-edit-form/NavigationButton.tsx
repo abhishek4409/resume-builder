@@ -1,43 +1,48 @@
 import React from 'react';
-import { Button, Grid, Box } from '@mui/material';
+import { Button, Grid, Box, Tooltip } from '@mui/material';
 import ColorPicker from '../color-picker';
 import FontStyler from '../font-styler';
 import DragSwicth from '../drag-switch';
 import SaveResume from '../save-resume';
 
-export const NavigationButtons = ({ handlePreviousStep, handleNextStep }) => {
+export const NavigationButtons = ({
+    handlePreviousStep,
+    handleNextStep,
+    checkDisabled,
+}) => {
     return (
         <Grid
             container
             justifyContent="center"
             sx={(theme) => ({
                 marginTop: '6rem',
-                [theme.breakpoints.down('lg')]: {
-                    // display: 'none',
-                },
             })}
         >
             <Box
                 sx={(theme) => ({
                     width: '80%',
                     display: 'flex',
-                    [theme.breakpoints.down(1720)]: {
+                    [theme.breakpoints.down(980)]: {
                         width: '100%',
                     },
                 })}
             >
                 <Grid item xs={9}>
                     <Box
+                        id="left-tool-parent"
                         sx={(theme) => ({
                             display: 'flex',
                             justifyContent: 'flex-start',
                             overflowX: 'auto',
                             overflowY: 'hidden',
-                            [theme.breakpoints.down('md')]: {
-                                width: '24rem',
+                            [theme.breakpoints.down(800)]: {
+                                width: '450px',
                             },
-                            [theme.breakpoints.down('sm')]: {
-                                width: '14rem',
+                            [theme.breakpoints.down(670)]: {
+                                width: '320px',
+                            },
+                            [theme.breakpoints.down(550)]: {
+                                width: '200px',
                             },
                         })}
                     >
@@ -55,39 +60,55 @@ export const NavigationButtons = ({ handlePreviousStep, handleNextStep }) => {
                         sx={(theme) => ({
                             display: 'flex',
                             justifyContent: 'flex-end',
-                            [theme.breakpoints.down('sm')]: {
-                                maxWidth: '100%',
-                                flexBasis: '100%',
-                            },
                         })}
                     >
-                        <Button
-                            variant="outlined"
-                            onClick={handlePreviousStep}
-                            sx={{
-                                borderRadius: '2rem',
-                                aspectRatio: 3,
-                                width: '6rem',
-                                textTransform: 'capitalize',
-                                fontSize: '1rem',
-                            }}
+                        <Tooltip
+                            title={
+                                checkDisabled('Previous')
+                                    ? ''
+                                    : 'Go back to previous section of the resume'
+                            }
+                            arrow
                         >
-                            Previous
-                        </Button>
+                            <Button
+                                variant="outlined"
+                                onClick={handlePreviousStep}
+                                disabled={checkDisabled('Previous')}
+                                sx={{
+                                    textTransform: 'capitalize',
+                                    height: '32px',
+                                    fontSize: '12px',
+                                    borderRadius: '16px',
+                                    minWidth: 'fit-content',
+                                }}
+                            >
+                                Previous
+                            </Button>
+                        </Tooltip>
                         <Box sx={{ ml: '1rem' }} />
-                        <Button
-                            variant="contained"
-                            onClick={handleNextStep}
-                            sx={{
-                                borderRadius: '2rem',
-                                aspectRatio: 3,
-                                width: '6rem',
-                                textTransform: 'capitalize',
-                                fontSize: '1rem',
-                            }}
+                        <Tooltip
+                            title={
+                                checkDisabled('Next')
+                                    ? ''
+                                    : 'Go to the next section of the resume'
+                            }
+                            arrow
                         >
-                            Next
-                        </Button>
+                            <Button
+                                variant="contained"
+                                onClick={handleNextStep}
+                                disabled={checkDisabled('Next')}
+                                sx={{
+                                    textTransform: 'capitalize',
+                                    height: '32px',
+                                    fontSize: '12px',
+                                    borderRadius: '16px',
+                                    minWidth: 'fit-content',
+                                }}
+                            >
+                                Next
+                            </Button>
+                        </Tooltip>
                     </Box>
                 </Grid>
             </Box>

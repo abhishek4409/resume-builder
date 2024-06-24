@@ -9,12 +9,12 @@ export const Header = () => {
         navigate('/');
     };
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <Paper
-                    elevation={1}
-                    sx={{ borderRadius: 0, padding: '0.5rem' }}
-                >
+        <Paper
+            elevation={1}
+            sx={{ borderRadius: 0, padding: '0.5rem', width: '100%' }}
+        >
+            <Grid container>
+                <Grid item xs={11}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Box sx={{ mr: '1rem' }} />
                         <ArrowBack
@@ -33,8 +33,8 @@ export const Header = () => {
                             Resume Builder
                         </Typography>
                     </Box>
-                </Paper>
+                </Grid>
             </Grid>
-        </Grid>
+        </Paper>
     );
 };

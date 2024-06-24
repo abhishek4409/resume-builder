@@ -1,10 +1,8 @@
 import { Grid, Typography } from '@mui/material';
-import React, { useId, useRef } from 'react';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import React, { useId } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelect } from '../../hooks/useSelect';
 import { savedResumeSelector } from '../../selectors';
-import TemplateA from '../templates/unstyledTemplateA';
-import { TemplateWrapper } from '../resume-templates/TemplateWrapper';
 import { SavedResumeListItems } from './SavedResumeListItems';
 import { useDispatch } from 'react-redux';
 
@@ -14,8 +12,7 @@ const SavedResume = ({ onClick }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const onDeletePress = (e, uid) => {
-        e.stopPropagation();
+    const onDeletePress = (uid) => {
         dispatch({
             type: 'DELETE_RESUME_AND_PREFERENCES',
             payload: { selectResumeUID: uid },

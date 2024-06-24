@@ -1,14 +1,5 @@
-import React, { useEffect } from 'react';
-import { tempJSON } from './tempJSON';
-import {
-    Box,
-    Divider,
-    Grid,
-    Typography,
-    TypographyProps,
-    createTheme,
-} from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { Box, Divider, Grid, Typography } from '@mui/material';
 import { useSelect } from '../../hooks/useSelect';
 import {
     educationDetailsSelector,
@@ -25,15 +16,10 @@ import { ThemeProvider } from '@emotion/react';
 import moment from 'moment';
 import { defaultValues } from './defaultValues';
 import { theme } from './theme';
-import {
-    DragDropContext,
-    Droppable,
-    OnDragEndResponder,
-} from 'react-beautiful-dnd';
-import Draggable from 'react-draggable';
+
 import WithDrag from '../../hoc/WithDrag';
 
-const Template = () => {
+export const UnstyledTemplateProfessional = () => {
     const [selectPersonalDetail] = useSelect(personalDetailSelector);
     const [selectSummary] = useSelect(summarySelector);
     const [selectProfessionalExperience] = useSelect(
@@ -85,9 +71,8 @@ const Template = () => {
                                 }}
                             >
                                 <Typography variant="h4" color="textPrimary">
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
                                     )['firstName']?.[0]?.value ||
                                         defaultValues['firstName']}
@@ -96,9 +81,8 @@ const Template = () => {
                                 <Box sx={{ ml: 0.5 }} />
 
                                 <Typography variant="h4" color="textPrimary">
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
                                     )['lastName']?.[0]?.value ||
                                         defaultValues['lastName']}
@@ -114,12 +98,11 @@ const Template = () => {
                                 }}
                             >
                                 <Typography variant="h5" color="textPrimary">
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
-                                    )['jobTitle']?.[0]?.value ||
-                                        defaultValues['jobTitle']}
+                                    )['graduationStream']?.[0]?.value ||
+                                        defaultValues['graduationStream']}
                                 </Typography>
                             </Box>
                         </Grid>
@@ -135,9 +118,8 @@ const Template = () => {
                                     variant="subtitle1"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
                                     )['address1']?.[0]?.value ||
                                         defaultValues['address1']}
@@ -152,9 +134,8 @@ const Template = () => {
                                     variant="subtitle1"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
                                     )['address2']?.[0]?.value ||
                                         defaultValues['address2']}
@@ -173,9 +154,8 @@ const Template = () => {
                                     variant="subtitle2"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
                                     )['phone']?.[0]?.value ||
                                         defaultValues['phone']}
@@ -195,9 +175,8 @@ const Template = () => {
                                     variant="subtitle2"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectPersonalDetail.fields,
+                                        selectPersonalDetail?.fields || [],
                                         ({ name }: any) => name
                                     )['emailAddress']?.[0]?.value ||
                                         defaultValues['emailAddress']}
@@ -225,9 +204,8 @@ const Template = () => {
                                     variant="body1"
                                     color="textSecondary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectSummary.fields,
+                                        selectSummary?.fields || [],
                                         ({ name }: any) => name
                                     )['summary']?.[0]?.value ||
                                         defaultValues['summary']}
@@ -277,12 +255,32 @@ const Template = () => {
                                     variant="subtitle1"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectProfessionalExperience.fields,
+                                        selectProfessionalExperience?.fields ||
+                                            [],
                                         ({ name }: any) => name
                                     )['positionTitle']?.[0]?.value ||
                                         defaultValues['positionTitle']}
+                                </Typography>
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                }}
+                            >
+                                <Typography
+                                    variant="subtitle1"
+                                    color="textPrimary"
+                                >
+                                    {Object.groupBy(
+                                        selectProfessionalExperience?.fields ||
+                                            [],
+                                        ({ name }: any) => name
+                                    )['internshipName']?.[0]?.value ||
+                                        defaultValues['internshipName']}
                                 </Typography>
                             </Box>
                         </Grid>
@@ -299,9 +297,9 @@ const Template = () => {
                                     className="italic"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectProfessionalExperience.fields,
+                                        selectProfessionalExperience?.fields ||
+                                            [],
                                         ({ name }: any) => name
                                     )['companyName']?.[0]?.value ||
                                         defaultValues['companyName']}
@@ -317,9 +315,9 @@ const Template = () => {
                                     className="italic"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectProfessionalExperience.fields,
+                                        selectProfessionalExperience?.fields ||
+                                            [],
                                         ({ name }: any) => name
                                     )['location']?.[0]?.value ||
                                         defaultValues['location']}
@@ -341,11 +339,12 @@ const Template = () => {
                                     color="textPrimary"
                                 >
                                     {moment(
-                                        // @ts-ignore:*
                                         Object.groupBy(
-                                            selectProfessionalExperience.fields,
+                                            selectProfessionalExperience?.fields ||
+                                                [],
                                             ({ name }: any) => name
-                                        )['startDate']?.[0]?.value,
+                                        )['startDate']?.[0]?.value ||
+                                            '2000-01-01',
                                         'YYYY-MM-DD'
                                     )?.format('MMMM YYYY') ||
                                         defaultValues['startDate']}
@@ -363,11 +362,12 @@ const Template = () => {
                                     color="textPrimary"
                                 >
                                     {moment(
-                                        // @ts-ignore:*
                                         Object.groupBy(
-                                            selectProfessionalExperience.fields,
+                                            selectProfessionalExperience?.fields ||
+                                                [],
                                             ({ name }: any) => name
-                                        )['endDate']?.[0]?.value,
+                                        )['endDate']?.[0]?.value ||
+                                            '2000-01-01',
                                         'YYYY-MM-DD'
                                     )?.format('MMMM YYYY') ||
                                         defaultValues['endDate']}
@@ -391,13 +391,14 @@ const Template = () => {
                                     variant="body2"
                                     color="textSecondary"
                                 >
-                                    {/* @ts-ignore:* */}
                                     {(
                                         Object.groupBy(
-                                            selectProfessionalExperience.fields,
+                                            selectProfessionalExperience?.fields ||
+                                                [],
                                             ({ name }: any) => name
-                                        )['workSummary']?.[0]?.value ||
-                                        defaultValues['workSummary']
+                                        )['internshipWorkDetails']?.[0]
+                                            ?.value ||
+                                        defaultValues['internshipWorkDetails']
                                     )
                                         ?.split('\n')
                                         .map((sentence: any, i: number) => (
@@ -452,9 +453,8 @@ const Template = () => {
                                     variant="subtitle1"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectEducationDetails.fields,
+                                        selectEducationDetails?.fields || [],
                                         ({ name }: any) => name
                                     )['schoolName']?.[0]?.value ||
                                         defaultValues['schoolName']}
@@ -474,9 +474,8 @@ const Template = () => {
                                     className="italic"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectEducationDetails.fields,
+                                        selectEducationDetails?.fields || [],
                                         ({ name }: any) => name
                                     )['degree']?.[0]?.value ||
                                         defaultValues['degree']}
@@ -492,9 +491,8 @@ const Template = () => {
                                     className="italic"
                                     color="textPrimary"
                                 >
-                                    {/* @ts-ignore:*/}
                                     {Object.groupBy(
-                                        selectEducationDetails.fields,
+                                        selectEducationDetails?.fields || [],
                                         ({ name }: any) => name
                                     )['fieldOfStudy']?.[0]?.value ||
                                         defaultValues['fieldOfStudy']}
@@ -516,11 +514,12 @@ const Template = () => {
                                     color="textPrimary"
                                 >
                                     {moment(
-                                        // @ts-ignore:*
                                         Object.groupBy(
-                                            selectEducationDetails.fields,
+                                            selectEducationDetails?.fields ||
+                                                [],
                                             ({ name }: any) => name
-                                        )['startDate']?.[0]?.value,
+                                        )['startDate']?.[0]?.value ||
+                                            '2000-01-01',
                                         'YYYY-MM-DD'
                                     )?.format('MMMM YYYY') ||
                                         defaultValues['startDate']}
@@ -538,11 +537,12 @@ const Template = () => {
                                     color="textPrimary"
                                 >
                                     {moment(
-                                        // @ts-ignore:*
                                         Object.groupBy(
-                                            selectEducationDetails.fields,
+                                            selectEducationDetails?.fields ||
+                                                [],
                                             ({ name }: any) => name
-                                        )['endDate']?.[0]?.value,
+                                        )['endDate']?.[0]?.value ||
+                                            '2000-01-01',
                                         'YYYY-MM-DD'
                                     )?.format('MMMM YYYY') ||
                                         defaultValues['endDate']}
@@ -566,10 +566,10 @@ const Template = () => {
                                     variant="body2"
                                     color="textSecondary"
                                 >
-                                    {/* @ts-ignore:* */}
                                     {(
                                         Object.groupBy(
-                                            selectEducationDetails.fields,
+                                            selectEducationDetails?.fields ||
+                                                [],
                                             ({ name }: any) => name
                                         )['description']?.[0]?.value ||
                                         defaultValues['description']
@@ -628,10 +628,9 @@ const Template = () => {
                                     className="bold"
                                     color="textSecondary"
                                 >
-                                    {/* @ts-ignore:* */}
                                     {(
                                         Object.groupBy(
-                                            selectSkills.fields,
+                                            selectSkills?.fields || [],
                                             ({ name }: any) => name
                                         )['skill']?.[0]?.value ||
                                         defaultValues['skill']
@@ -652,11 +651,7 @@ const Template = () => {
                         </Grid>
                     </Grid>
                 </WithDrag>
-                {/* </Droppable>
-                </DragDropContext> */}
             </Grid>
         </ThemeProvider>
     );
 };
-
-export default Template;

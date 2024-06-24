@@ -1,16 +1,18 @@
-import { Alert, Box, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Box, Grid, Paper, TextField } from '@mui/material';
 import React from 'react';
 import ResumeEditForm from '../resume-edit-form';
-import Template from '../templates/unstyledTemplateA';
+import { UnstyledTemplateProfessional } from '../templates/UnstyledTemplateProfessional';
+import { StyledTemplateProfessional } from '../templates/StyledTemplateProfessional';
 import { Header } from './Header';
 import { useSelect } from '../../hooks/useSelect';
-import { resumeTitleSelector } from '../../selectors';
+import { resumeTitleSelector, templateTypeSelector } from '../../selectors';
 import { useDispatch } from 'react-redux';
-import { Alarm, CheckCircleOutline } from '@mui/icons-material';
 import AlertBox from '../alert-box';
 
 const ResumeEditorScreen = () => {
     const [selectResumeTitle] = useSelect(resumeTitleSelector);
+    const [selectTemplateType] = useSelect(templateTypeSelector);
+
     const disptach = useDispatch();
 
     const handleResumeTitle = (event) => {
@@ -21,53 +23,58 @@ const ResumeEditorScreen = () => {
         });
     };
 
+    const openTemplate = () => {
+        switch (selectTemplateType) {
+            case 'COLLEDGE_GRADUATE_TEMPLATE': {
+                return <UnstyledTemplateProfessional />;
+            }
+            case 'PROFESSIONAL_TEMPLATE': {
+                return <StyledTemplateProfessional />;
+            }
+
+            default:
+                return <></>;
+        }
+    };
+
     return (
         <>
             <Grid container>
                 <Header />
-                <Grid
-                    container
+                <Box
                     sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent: 'space-evenly',
                         margin: '1rem',
-                        justifyContent: 'center',
+                        width: '100%',
                     }}
                 >
-                    <Grid
-                        item
-                        xs={8}
+                    <Box
                         sx={(theme) => ({
-                            [theme.breakpoints.down(1380)]: {
-                                flexBasis: '100%',
-                                maxWidth: '100%',
-                            },
+                            maxWidth: '980px',
+                            flex: '0 1 980px',
                         })}
                     >
                         <Box>
                             <ResumeEditForm />
                         </Box>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={4}
+                    </Box>
+                    <Box
                         sx={(theme) => ({
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            width: 0,
-                            [theme.breakpoints.down(2100)]: {
-                                flexBasis: '55%',
-                                maxWidth: '55%',
+                            [theme.breakpoints.down(840)]: {
+                                width: '100px',
                             },
                         })}
                     >
+                        <Box sx={{ mt: '1rem' }} />
                         <TextField
                             size="small"
                             variant="standard"
                             value={selectResumeTitle}
                             inputProps={{ style: { textAlign: 'center' } }}
                             onChange={handleResumeTitle}
-                            placeholder="Resume Title"
+                            placeholder="Enter Title"
                         />
                         <Box sx={{ mb: '1rem' }} />
                         <Paper
@@ -79,23 +86,24 @@ const ResumeEditorScreen = () => {
                                 '-webkit-box-sizing': 'border-box',
                                 '-moz-box-sizing': 'border-box',
                                 'box-sizing': 'border-box',
-                                [theme.breakpoints.down('md')]: {
-                                    transform: 'scale(0.9) translate(-2%, 0%)',
-                                },
-                                [theme.breakpoints.down('750')]: {
+                                [theme.breakpoints.down(840)]: {
                                     transform:
-                                        'scale(0.7) translate(-3%, -16%)',
+                                        'scale(0.7) translate(-63%, -22.5%)',
                                 },
-                                [theme.breakpoints.down('sm')]: {
+                                [theme.breakpoints.down(600)]: {
                                     transform:
-                                        'scale(0.6) translate(-3%, -28%)',
+                                        'scale(0.5) translate(-88.5%, -51.5%)',
+                                },
+                                [theme.breakpoints.down(450)]: {
+                                    transform:
+                                        'scale(0.45) translate(-97%, -63.5%)',
                                 },
                             })}
                         >
-                            <Template />
+                            {openTemplate()}
                         </Paper>
-                    </Grid>
-                </Grid>
+                    </Box>
+                </Box>
             </Grid>
 
             <AlertBox />

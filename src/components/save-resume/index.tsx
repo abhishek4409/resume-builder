@@ -1,14 +1,6 @@
-import { CheckCircleOutline, SaveAs } from '@mui/icons-material';
-import {
-    Alert,
-    Box,
-    Button,
-    Grid,
-    Paper,
-    Popover,
-    TextField,
-} from '@mui/material';
-import React, { useState } from 'react';
+import { SaveAs } from '@mui/icons-material';
+import { Button, Tooltip } from '@mui/material';
+import React from 'react';
 import {
     resumeFormattingSelector,
     resumeTitleSelector,
@@ -43,24 +35,37 @@ const SaveResume = () => {
         });
     };
 
+    const isDisabled = !selectResumeTitle?.length;
+
     return (
         <>
-            <Button
-                variant="outlined"
-                disabled={!selectResumeTitle?.length}
-                sx={{
-                    borderRadius: '1rem',
-                    width: 'fit-content',
-                    textTransform: 'capitalize',
-                    fontSize: '1rem',
-                    minWidth: '6rem',
-                }}
-                onClick={handleSaveAsPopup}
+            <Tooltip
+                title={
+                    isDisabled
+                        ? 'Enter any Resume title to enable save'
+                        : 'This will save resume contents and its preferences like font size, color and dragged state. You can view and edit resumes from the "Saved Resume" section of the home page'
+                }
+                arrow
             >
-                {' '}
-                Save:&nbsp;
-                <SaveAs />
-            </Button>
+                <span>
+                    <Button
+                        variant="outlined"
+                        disabled={isDisabled}
+                        sx={{
+                            textTransform: 'capitalize',
+                            height: '32px',
+                            fontSize: '12px',
+                            borderRadius: '16px',
+                            minWidth: 'fit-content',
+                        }}
+                        onClick={handleSaveAsPopup}
+                    >
+                        {' '}
+                        Save:&nbsp;
+                        <SaveAs />
+                    </Button>
+                </span>
+            </Tooltip>
         </>
     );
 };

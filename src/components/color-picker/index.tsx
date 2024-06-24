@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Paper, Popover, Typography } from '@mui/material';
+import { Box, Button, Paper, Popover, Tooltip } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useSelect } from '../../hooks/useSelect';
 import {
@@ -62,22 +62,29 @@ const ColorPicker = () => {
 
     return (
         <>
-            <Button
-                variant="outlined"
-                sx={{
-                    borderRadius: '1rem',
-                    // aspectRatio: 3,
-                    width: 'fit-content',
-                    textTransform: 'capitalize',
-                    fontSize: '1rem',
-                    minWidth: 'fit-content',
-                }}
-                onClick={handleColorPickerPopup}
+            <Tooltip
+                title={'Click to choose color of the resume content.'}
+                arrow
             >
-                {' '}
-                Theme:&nbsp;&nbsp;
-                <ColorIndicator color={selectFormattingColor} action="view" />
-            </Button>
+                <Button
+                    variant="outlined"
+                    sx={{
+                        textTransform: 'capitalize',
+                        height: '32px',
+                        fontSize: '12px',
+                        borderRadius: '16px',
+                        minWidth: 'fit-content',
+                    }}
+                    onClick={handleColorPickerPopup}
+                >
+                    {' '}
+                    Theme:&nbsp;&nbsp;
+                    <ColorIndicator
+                        color={selectFormattingColor}
+                        action="view"
+                    />
+                </Button>
+            </Tooltip>
             <Popover
                 id={'color-picker-popover'}
                 open={open}

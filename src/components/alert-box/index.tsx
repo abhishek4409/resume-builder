@@ -39,7 +39,7 @@ const AlertBox = () => {
                     )
                 }
                 severity={selectAlertBox.severity}
-                sx={{ position: 'absolute', top: 0, left: '40%' }}
+                sx={{ position: 'fixed', top: 0, left: '40%' }}
             >
                 {selectAlertBox?.message || ''}
             </Alert>

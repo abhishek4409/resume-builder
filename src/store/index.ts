@@ -5,20 +5,19 @@ import storage from 'redux-persist/lib/storage';
 import { formattingReducer } from '../reducers/formatting';
 import { alertReducer } from '../reducers/alert';
 import { savedResumeReducer } from '../reducers/savedResume';
+import { templateTypeReducer } from '../reducers/templateType';
 
 const persistConfig = {
     key: 'root',
     storage,
 };
-// const ReactReduxDevTools =
-//     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-//     window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const rootPersistReducer = persistCombineReducers(persistConfig, {
     templateReducer,
     formattingReducer,
     alertReducer,
     savedResumeReducer,
+    templateTypeReducer,
 });
 
 export const store = configureStore({

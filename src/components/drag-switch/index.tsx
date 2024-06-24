@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelect } from '../../hooks/useSelect';
 import { dragEnableSelector } from '../../selectors';
-import { Box, InputLabel, Switch, Typography } from '@mui/material';
+import { Box, Switch, Toolbar, Tooltip, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
 const DragSwicth = () => {
@@ -17,21 +17,33 @@ const DragSwicth = () => {
         });
     };
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                width: '10rem',
-                border: 'solid 1px',
-                borderRadius: '1rem',
-                borderColor: 'primary.light',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minWidth: '10rem',
-            }}
+        <Tooltip
+            title={'Enabling this will allow resume contents to be dragged'}
+            arrow
         >
-            <Typography color="primary.main">Draggable</Typography>
-            <Switch checked={Boolean(selectDragEnable)} onChange={onChange} />
-        </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    border: 'solid 1px',
+                    borderRadius: '1rem',
+                    borderColor: 'primary.light',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '12px',
+                    height: ' 30px',
+                    minWidth: '118px',
+                }}
+            >
+                <Typography color="primary.main" fontSize="inherit">
+                    Draggable
+                </Typography>
+                <Switch
+                    size="small"
+                    checked={Boolean(selectDragEnable)}
+                    onChange={onChange}
+                />
+            </Box>
+        </Tooltip>
     );
 };
 

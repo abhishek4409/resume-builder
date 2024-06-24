@@ -36,7 +36,9 @@ const WithDrag = ({ children }) => {
             }}
             position={{
                 x: 0,
-                y: selectTemplate.sections[sectionIndex]['transformX'] || 0,
+                y:
+                    selectTemplate?.sections?.[sectionIndex]?.['transformX'] ||
+                    0,
             }}
             grid={[1, 1]}
             scale={1}

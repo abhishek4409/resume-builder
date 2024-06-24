@@ -1,15 +1,9 @@
 import React, { useId } from 'react';
 import {
     Box,
-    Card,
-    CardContent,
-    CardHeader,
     Checkbox,
     Grid,
     InputLabel,
-    Step,
-    StepLabel,
-    Stepper,
     TextField,
     Typography,
 } from '@mui/material';
@@ -35,7 +29,6 @@ export const DynamicFields = ({
                     key={`${fieldIds}_step${index}_${field?.name}`}
                 >
                     <Box
-                        // key={fieldIds + field?.name}
                         sx={(theme) => ({
                             display: 'flex',
                             height: 'calc(100% - 1.5rem)',
@@ -47,9 +40,6 @@ export const DynamicFields = ({
                                 ? 'center'
                                 : 'start',
                             margin: '0.75rem 1.5rem',
-                            [theme.breakpoints.down('md')]: {
-                                margin: '0.6rem 0.6rem',
-                            },
                             alignItems: ['text', 'textarea', 'date'].includes(
                                 field?.type
                             )
@@ -84,7 +74,6 @@ export const DynamicFields = ({
                         </InputLabel>
                         {['text', 'textarea', 'date'].includes(field?.type) && (
                             <TextField
-                                // key={fieldIds + field?.name}
                                 sx={{
                                     width: '100%',
                                 }}
@@ -113,14 +102,11 @@ export const DynamicFields = ({
                                         : {}),
                                 }}
                                 value={field?.value}
-                                //   defaultValue="Hello World"
                             />
                         )}
                         {field?.type === 'checkbox' && (
                             <Checkbox
-                                // key={fieldIds + field?.name}
                                 size="small"
-                                // type={field?.type || 'text'}
                                 sx={{
                                     padding: '0.3rem',
                                     marginLeft: '-1rem',
@@ -135,7 +121,6 @@ export const DynamicFields = ({
                                     )
                                 }
                                 checked={field?.value}
-                                //   defaultValue="Hello World"
                             />
                         )}
                     </Box>
@@ -174,7 +159,7 @@ export const DynamicFields = ({
                             fontFamily="Montserrat"
                         >
                             {' '}
-                            Export your Resume to PDF
+                            Now Export your Resume to PDF Format
                         </Typography>
                     </Box>
                     <Box sx={{ mt: '1rem' }} />

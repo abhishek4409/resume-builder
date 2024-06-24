@@ -2,7 +2,7 @@ export const templateSelector = (state: any) => state.templateReducer;
 
 export const personalDetailSelector = (state: any) => {
     const name = 'personalDetails';
-    const result = state.templateReducer.sections.find(
+    const result = state?.templateReducer?.sections?.find(
         (section: any) => section.name === name
     );
     return result;
@@ -10,7 +10,7 @@ export const personalDetailSelector = (state: any) => {
 
 export const professionalExperienceSelector = (state: any) => {
     const name = 'professionalExperience';
-    const result = state.templateReducer.sections.find(
+    const result = state?.templateReducer?.sections?.find(
         (section: any) => section.name === name
     );
     return result;
@@ -18,7 +18,7 @@ export const professionalExperienceSelector = (state: any) => {
 
 export const educationDetailsSelector = (state: any) => {
     const name = 'educationDetails';
-    const result = state.templateReducer.sections.find(
+    const result = state?.templateReducer?.sections?.find(
         (section: any) => section.name === name
     );
     return result;
@@ -26,7 +26,7 @@ export const educationDetailsSelector = (state: any) => {
 
 export const skillsSelector = (state: any) => {
     const name = 'skills';
-    const result = state.templateReducer.sections.find(
+    const result = state?.templateReducer?.sections?.find(
         (section: any) => section.name === name
     );
     return result;
@@ -34,7 +34,15 @@ export const skillsSelector = (state: any) => {
 
 export const summarySelector = (state: any) => {
     const name = 'summary';
-    const result = state.templateReducer.sections.find(
+    const result = state?.templateReducer?.sections?.find(
+        (section: any) => section.name === name
+    );
+    return result;
+};
+
+export const personalProjectsSelector = (state: any) => {
+    const name = 'projectDetails';
+    const result = state?.templateReducer?.sections?.find(
         (section: any) => section.name === name
     );
     return result;
@@ -74,3 +82,6 @@ export const resumeUIDSelector = (state: any) => state.formattingReducer?.uid;
 export const alertBoxSelector = (state: any) => state.alertReducer;
 
 export const savedResumeSelector = (state: any) => state.savedResumeReducer;
+
+export const templateTypeSelector = (state: any) =>
+    state.templateTypeReducer.type;

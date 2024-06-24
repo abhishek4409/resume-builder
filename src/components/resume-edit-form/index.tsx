@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FormStep } from './FormStep';
 import { useSteps } from '../../hooks/useSteps';
-import { tempJSON } from '../templates/tempJSON';
+
 import { Form } from './Form';
 import { DynamicFields } from './DynamicFields';
 import { useSelect } from '../../hooks/useSelect';
@@ -9,22 +9,41 @@ import {
     templateSelector,
     resumeCurrentStepSelector,
     resumeUIDSelector,
+    resumeTitleSelector,
 } from '../../selectors';
+
 import { useDispatch } from 'react-redux';
-import { downloadToPDF } from '../../utils/utils';
+import { downloadToPDF, isAllRequiredFieldsAreFilled } from '../../utils/utils';
 import { NavigationButtons } from './NavigationButton';
 import { v4 as uuidv4 } from 'uuid';
 
 const ResumeEditForm = () => {
     const dispatch = useDispatch();
 
-    const [selectCurrentStep] = useSelect(resumeCurrentStepSelector);
-    const [selectResumeUID] = useSelect(resumeUIDSelector);
     const [selectTemplate] = useSelect(templateSelector);
 
-    const [steps, currentStep, setCurrentStep] = useSteps(tempJSON);
+    const [steps, currentStep, setCurrentStep] = useSteps(selectTemplate);
+
+    const [selectCurrentStep] = useSelect(resumeCurrentStepSelector);
+    const [selectResumeUID] = useSelect(resumeUIDSelector);
+    const [selectResumeTitle] = useSelect(resumeTitleSelector);
 
     const handleNextStep = () => {
+        const isFormValid = isAllRequiredFieldsAreFilled(
+            selectTemplate,
+            currentStep
+        );
+        if (!isFormValid) {
+            dispatch({
+                type: 'SHOW_ALERT_BOX',
+                payload: {
+                    severity: 'error',
+                    message: 'Please Fill all required fields',
+                },
+            });
+            return;
+        }
+
         if (currentStep < steps.length) setCurrentStep((prev) => prev + 1);
     };
 
@@ -62,10 +81,20 @@ const ResumeEditForm = () => {
         });
     };
 
+    const checkButtonDisabled = (name) => {
+        if (
+            name === 'Next' &&
+            currentStep >= selectTemplate?.sections?.length
+        ) {
+            return true;
+        }
+        if (name === 'Previous' && currentStep === 0) return true;
+    };
+
     const exportToPDF = () => {
         const id = 'resume-paper';
         const element = document.getElementById(id);
-        const resumeTitle = 'Untitled Resume';
+        const resumeTitle = selectResumeTitle || 'Untitled';
         downloadToPDF(id, element, resumeTitle);
     };
 
@@ -79,8 +108,9 @@ const ResumeEditForm = () => {
             <NavigationButtons
                 handleNextStep={handleNextStep}
                 handlePreviousStep={handlePreviousStep}
+                checkDisabled={checkButtonDisabled}
             />
-            <Form title={steps[currentStep]}>
+            <Form title={steps?.[currentStep]}>
                 <DynamicFields
                     selectTemplate={selectTemplate}
                     currentStep={currentStep}

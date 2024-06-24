@@ -11,6 +11,9 @@ const HomeScreen = () => {
     const dispatch = useDispatch();
 
     const handleChooseTemplateClick = () => {
+        document
+            ?.getElementById('resume-template-lists')
+            ?.scrollIntoView({ behavior: 'smooth', block: 'end' });
         setTab(0);
     };
 
@@ -18,7 +21,15 @@ const HomeScreen = () => {
         setTab(1);
     };
 
-    const onTemplateClick = () => {
+    const onTemplateClick = (templateType) => {
+        dispatch({
+            type: 'SET_TEMPLATE_TYPE',
+            payload: templateType,
+        });
+        dispatch({
+            type: 'LOAD_CLICKED_TEMPLATE',
+            payload: templateType,
+        });
         navigate('new-resume');
     };
 
@@ -28,6 +39,10 @@ const HomeScreen = () => {
         });
         dispatch({
             type: 'RESET_FORM_DATA',
+        });
+
+        dispatch({
+            type: 'CLEAR_TEMPLATE_DATA',
         });
     }, []);
 

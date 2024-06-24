@@ -1,29 +1,46 @@
-import { Grid } from '@mui/material';
-import TemplateA from '../templates/unstyledTemplateA';
-import React, { useRef } from 'react';
+import { Box, Grid } from '@mui/material';
+import { UnstyledTemplateProfessional } from '../templates/UnstyledTemplateProfessional';
+import { StyledTemplateProfessional } from '../templates/StyledTemplateProfessional';
+
+import React from 'react';
 import { TemplateWrapper } from './TemplateWrapper';
-import { Route, Routes, useLocation } from 'react-router-dom';
 
 const ResumeTemplates = ({ onClick }) => {
     return (
-        <Grid container>
-            <Grid item desktop={6}>
+        <Box
+            sx={(theme) => ({
+                '& > .MuiBox-root': {
+                    height: '760px',
+                    [theme.breakpoints.down(600)]: {
+                        height: '550px',
+                    },
+                    [theme.breakpoints.down(450)]: {
+                        height: '400px',
+                    },
+                    [theme.breakpoints.down(350)]: {
+                        height: '250px',
+                    },
+                },
+            })}
+            id="resume-template-lists"
+        >
+            <Box>
                 <TemplateWrapper
-                    title="Professional Resume"
-                    clickAction={onClick}
+                    title="Resume for Colledge Graduates"
+                    clickAction={() => onClick('COLLEDGE_GRADUATE_TEMPLATE')}
                 >
-                    <TemplateA />
+                    <UnstyledTemplateProfessional />
                 </TemplateWrapper>
-            </Grid>
-            <Grid item desktop={6}>
+            </Box>
+            <Box>
                 <TemplateWrapper
-                    title="Colledge Graduate Resume"
-                    clickAction={onClick}
+                    title="Resume for Working Professionals"
+                    clickAction={() => onClick('PROFESSIONAL_TEMPLATE')}
                 >
-                    <TemplateA />
+                    <StyledTemplateProfessional />
                 </TemplateWrapper>
-            </Grid>
-        </Grid>
+            </Box>
+        </Box>
     );
 };
 export default ResumeTemplates;
